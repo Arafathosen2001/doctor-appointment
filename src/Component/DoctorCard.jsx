@@ -9,13 +9,13 @@ const DoctorCard = ({ doctor }) => {
         <div>
             <Card className=" border">
                 <div className="flex gap-5">
-                    <div className='w-xs h-52'>
+                    <div className='flex-1'>
                         <Image
                             src={doctor.image}
                             alt='doctor'
                             height={300}
                             width={300}
-                            className='rounded-2xl'
+                            className='h-48 rounded-2xl'
                         />
                     </div>
                     <div className="space-y-3">
