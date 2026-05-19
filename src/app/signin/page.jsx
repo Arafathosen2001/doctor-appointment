@@ -22,7 +22,7 @@ const SignInPage=()=> {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const Udata = Object.fromEntries(formData.entries());
-        console.log(Udata)
+        // console.log(Udata)
         const { data, error } = await authClient.signIn.email({
             email: Udata.email, // required
             password: Udata.password, // required
@@ -45,7 +45,7 @@ const SignInPage=()=> {
     }
 
     return (
-        <div className="container flex items-center justify-center rounded-3xl bg-surface p-6">
+        <div className="container flex items-center justify-center  p-10">
             <Surface className="w-xl min-w-[380px] border border-surface-variant rounded-3xl p-6">
                 <Form onSubmit={onSubmit}>
                     <Fieldset className="w-full">

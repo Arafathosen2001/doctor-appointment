@@ -7,22 +7,23 @@ import React from 'react';
 import NavLink from './NavLink';
 import { redirect } from 'next/navigation';
 import { FaHeartbeat } from 'react-icons/fa';
+import { authClient } from '@/app/lib/auth-client';
 const NavBar = () => {
-    //     const {
-    //         data: session
-    //     } = authClient.useSession();
-    // const user = session?.user;
-    // // const { image }= user;
-    // // console.log(user)
-    // const handelSignOut = async() => { 
-    //     await authClient.signOut();
-    //     alert("Sign out successfully");
-    //     redirect("/signin");
-    // }
+        const {
+            data: session,
+            isPending
+        } = authClient.useSession();
+    const user = session?.user;
+    console.log(user)
+    const handelSignOut = async() => { 
+        await authClient.signOut();
+        alert("Sign out successfully");
+        redirect("/signin");
+    }
     
     return (
-        <div className="shadow-2xl">
-            <nav className='container mx-auto flex justify-between items-center py-2 '>
+        <div className="shadow-sm">
+            <nav className='container flex justify-between items-center py-2 '>
                 <div className="flex justify-center items-center">
                     <Link href={'/'} className='text-[#00D2C4] text-2xl'><FaHeartbeat /></Link>
                     <Link href={'/'}><span className="text-2xl font-bold tracking-wide">
@@ -37,17 +38,16 @@ const NavBar = () => {
             <ul className='flex justify-between items-center gap-3'>
                 
                 
-                     <>
+                     {isPending?(<><h1>Loding...</h1></>):user ? (<>
                         <Avatar>
-                            <Avatar.Image alt="John Doe" src='' />
+                            <Avatar.Image alt="John Doe" src={user?.image} width={100} height={100} />
                             <Avatar.Fallback></Avatar.Fallback>
                         </Avatar>
-                        <Button variant='outline' className={'btn border clt'}>Log Out</Button>
-                    </> 
-                        <>
+                        <Button onClick={handelSignOut} variant='outline' className={'btn border clt'}>Log Out</Button>
+                    </>): (<>
                         <li><NavLink href='/signin' ><Button variant='outline' className={'btn border clt'}>Login</Button></NavLink></li>
                         <li><NavLink href='/signup' ><Button variant='outline' className={'btn border clt'}>Sign Up</Button></NavLink></li>
-                    </>
+                    </>)}
                 
             </ul>
             </nav>
