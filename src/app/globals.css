@@ -1,26 +1,20 @@
 @import "tailwindcss";
+@import "@heroui/styles";
+@plugin "daisyui";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+.container{
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
 }
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.border {
+    border-color:#00D2C4;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.clt{
+    color:#00D2C4;
 }
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.btn{
+    padding: 6px 16px;
+    border-radius: 12px;
 }
