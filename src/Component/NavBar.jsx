@@ -14,7 +14,7 @@ const NavBar = () => {
             isPending
         } = authClient.useSession();
     const user = session?.user;
-    console.log(user)
+    // console.log(user)
     const handelSignOut = async() => { 
         await authClient.signOut();
         alert("Sign out successfully");
@@ -33,6 +33,7 @@ const NavBar = () => {
             <ul className='flex justify-between items-center gap-3'>
                 <li><NavLink href={'/'}>Home</NavLink></li>
                 <li><NavLink href={'/all-doctors'}>All Appointment</NavLink></li>
+                <li><NavLink href={'/dashboard'}>Dashboard</NavLink></li>
             </ul>
             
             <ul className='flex justify-between items-center gap-3'>

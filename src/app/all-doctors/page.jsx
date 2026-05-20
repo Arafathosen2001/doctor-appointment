@@ -4,7 +4,7 @@ import React from 'react';
 const AllDoctorsPage = async () => {
     const res = await fetch('http://localhost:8000/doctors');
     const doctors = await res.json();
-    console.log(doctors)
+    // console.log(doctors)
     return (
         <div className='container'>
             <h1>All Doctors</h1>

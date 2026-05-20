@@ -1,3 +1,4 @@
+
 import { AppointmentModal } from '@/Component/AppointmentModal';
 import { Button, Card } from '@heroui/react';
 import Image from 'next/image';
@@ -10,8 +11,7 @@ const DoctorDeatilesPage = async({ params }) => {
     const { did } = await params;
     const res = await fetch(`http://localhost:8000/doctors/${did}`)
     const doctor = await res.json();
-    console.log(doctor)
-
+    // console.log(doctor)
     return (
         <div className='container py-10'>
             <Card className=" border">
