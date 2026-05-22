@@ -1,6 +1,7 @@
 import React from 'react';
 import { auth } from '../lib/auth';
 import { headers } from 'next/headers';
+import { BokingDoctorCard } from '@/Component/BokingDoctorCard';
 
 const Dashboard = async () => {
     const session = await auth.api.getSession({
@@ -12,15 +13,17 @@ const Dashboard = async () => {
     const data = await res.json();
     // console.log(data)
     return (
-        <div className='container'>
+        <div className='container py-20'>
             <h1>Dashbord</h1>
 
-            {
-                data.length === 0 ? (<><h1>No Data</h1></>) :
-                    (
-                        data.map(doct => <h1 key={doct._id} > {doct.doctorName }</h1>)
-                    )
-            }
+            <div className="space-y-3">
+                {
+                    data.length === 0 ? (<><h1>No Data</h1></>) :
+                        (
+                            data.map(doct => <BokingDoctorCard key={doct._id} doct={doct}></BokingDoctorCard>)
+                        )
+                }
+            </div>
         </div>
     );
 };

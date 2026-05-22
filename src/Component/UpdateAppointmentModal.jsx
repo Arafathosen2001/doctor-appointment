@@ -2,50 +2,47 @@
 
 import { authClient } from "@/app/lib/auth-client";
 import { Button, Card, Select, Input, Label, ListBox, Modal, Surface, TextField, Calendar, DatePicker, DateField, Form } from "@heroui/react";
-import Link from "next/link";
+import React, { useState } from "react";
+import { parseDate } from "@internationalized/date";
 import { redirect } from "next/navigation";
-import React from "react";
-import { BiEnvelope } from "react-icons/bi";
-
-export function AppointmentModal({ doctor }) {
-    // console.log(doctor)
+export function UpdateAppointmentModal({ doct }) {
+    const [date, setDate] = useState(
+        doct?.BokingDate
+            ? parseDate(doct.BokingDate.split("T")[0])
+            : null
+    );
+    console.log(doct)
     const {
-                data: session,
-                isPending
-            } = authClient.useSession();
+        data: session,
+        isPending
+    } = authClient.useSession();
     const user = session?.user;
     // console.log(user)
     const onsubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const Udata = Object.fromEntries(formData.entries());
-        // console.log(Udata)
-        const bookingDoctorData = {
-            userId: user?.id,
-            userEmail: user?.email,
-            doctorName: doctor?.name,
-            doctorImage: doctor?.image,
+        console.log(Udata)
+        const updateData = {
             patientName: Udata.name,
-            patientPhoneNumber: Udata.phone,
             patientGender: Udata.gender,
             patientAge: Udata.age,
+            patientPhoneNumber: Udata.phone,
             BokingDate: Udata.date,
-        }
-        if (Udata.date === "") {
-            return alert('plese select date')
-        }
-
-        const res = await fetch('http://localhost:8000/appointments', {
-            method: 'POST',
+        };
+        const res = await fetch(
+            `http://localhost:8000/appointments/${doct._id}`,
+            {
+            method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(bookingDoctorData)
+                body: JSON.stringify(updateData)
         })
         const data = await res.json();
         if (data) {
-            alert('Booking succesfull')
-            redirect('/all-doctors')
+            alert('Update succesfull')
+            redirect('/dashboard')
         }
     }
     // console.log(doctor)
@@ -56,40 +53,38 @@ export function AppointmentModal({ doctor }) {
                 <Modal.Container placement="auto">
                     <Modal.Dialog className="sm:max-w-md">
                         <Modal.CloseTrigger />
-                        <Modal.Header>
-                            <Modal.Heading>Contact Us</Modal.Heading>
-                            <h1 className='text-2xl font-semibold'>{doctor.name}</h1>
-                        </Modal.Header>
                         <Modal.Body className="p-6">
                             <Surface variant="default">
                                 <Form onSubmit={onsubmit} className="flex flex-col gap-4">
-                                    <TextField isRequired className="w-full" name="name" type="text">
+                                    <TextField defaultValue={doct.patientName} isRequired className="w-full" name="name" type="text">
                                         <Label>Name</Label>
-                                        <Input placeholder="Enter your name" />
+                                        <Input  placeholder="Enter your name" />
                                     </TextField>
-                                    <TextField className="w-full" name="name" type="text">
+                                    <TextField 
+                                         className="w-full" name="name" type="text">
                                         <Label>Gender</Label>
                                         <select name="gender" className="w-full p-2 shadow rounded-2xl">
-                                            <option value="">Select one</option>
+                                            <option value="">{doct.patientGender}</option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
                                             <option value="Others">Others</option>
                                         </select>
                                     </TextField>
-                                    
 
-                                    <TextField isRequired className="w-full" name="age" type="tel">
+
+                                    <TextField defaultValue={doct.patientAge} isRequired className="w-full" name="age" type="tel">
                                         <Label>Age</Label>
                                         <Input placeholder="Enter your Age" />
                                     </TextField>
-                                    <TextField isRequired className="w-full" name="phone" type="tel">
+                                    <TextField defaultValue={doct.patientPhoneNumber} isRequired className="w-full" name="phone" type="tel">
                                         <Label>Phone</Label>
                                         <Input placeholder="Enter your phone number" />
                                     </TextField>
-                                    <DatePicker className="w-full" name="date">
+                                    <DatePicker value={date}
+                                        onChange={setDate} className="w-full" name="date">
                                         <Label>Date</Label>
                                         <DateField.Group fullWidth>
-                                            <DateField.Input>{(segment) => <DateField.Segment segment={segment} />}</DateField.Input>
+                                            <DateField.Input >{(segment) => <DateField.Segment segment={segment} />}</DateField.Input>
                                             <DateField.Suffix>
                                                 <DatePicker.Trigger>
                                                     <DatePicker.TriggerIndicator />
@@ -121,12 +116,12 @@ export function AppointmentModal({ doctor }) {
                                         </DatePicker.Popover>
                                     </DatePicker>
                                     <Modal.Footer>
-                                        <Button type="submit" className={'w-full'}>Submit</Button>
+                                        <Button type="submit" className={'w-full'}>Update</Button>
                                     </Modal.Footer>
                                 </Form>
                             </Surface>
                         </Modal.Body>
-                        
+
                     </Modal.Dialog>
                 </Modal.Container>
             </Modal.Backdrop>

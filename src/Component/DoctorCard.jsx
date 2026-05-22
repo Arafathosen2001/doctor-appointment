@@ -4,7 +4,7 @@ import Link from 'next/link';
 import React from 'react';
 
 const DoctorCard = ({ doctor }) => {
-    console.log(doctor)
+    // console.log(doctor)
     return (
         <div>
             <Card className=" border">
