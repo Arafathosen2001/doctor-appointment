@@ -48,7 +48,7 @@ export function UpdateAppointmentModal({ doct }) {
     // console.log(doctor)
     return (
         <Modal>
-            <Button variant='outline' className="btn border clt">Book Appointment</Button>
+            <Button variant='outline' className="btn border clt">Update</Button>
             <Modal.Backdrop>
                 <Modal.Container placement="auto">
                     <Modal.Dialog className="sm:max-w-md">
