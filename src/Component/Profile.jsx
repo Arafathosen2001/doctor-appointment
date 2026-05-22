@@ -7,7 +7,7 @@ import ProfileUpdateModal from './ProfileUpdateModal';
 const Profile = async () => {
     const session = await serverSession();
     const user = session?.user;
-    console.log(session)
+    // console.log(session)
     return (
         <div>
             <Card className="w-4/12 mx-auto items-stretch md:flex-row justify-between gap-5">

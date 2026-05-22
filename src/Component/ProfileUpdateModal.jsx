@@ -1,26 +1,30 @@
+"use client";
 import { MdOutlineModeEditOutline } from 'react-icons/md';
 import { Button, FieldError, Form, Input, Label, Modal, Spinner, Surface, TextField } from "@heroui/react";
 
 import { FaUserCog } from 'react-icons/fa';
 import { authClient } from '@/app/lib/auth-client';
+import { redirect } from 'next/navigation';
 
-const ProfileUpdateModal = ({ handleEdit }) => {
+const ProfileUpdateModal = () => {
+    const { data: session, status, isPending } = authClient.useSession();
+        const user = session?.user;
+        console.log(user);
     const onSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault(); 
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData.entries());
-        // console.log(data);
 
 
         const { data: res, error } = await authClient.updateUser({
             name: data.name,
-            image: data.image,
-            redirect: "/profile",
+            image: data.imageUrl,
+            redirect: "/dashboard",
         })
         if (error) {
             alert(`${error.message}`);
         }
-        alert(`Update Successful`); 
+        alert(`Update Successful`);
     };
 
     return (
@@ -34,30 +38,39 @@ const ProfileUpdateModal = ({ handleEdit }) => {
                             <Modal.Header>
                                 <Modal.Icon className="bg-accent-soft text-accent-soft-foreground">
                                 </Modal.Icon>
-                                <Modal.Heading>Contact Us</Modal.Heading>
-                                
+                                <Modal.Heading>Update Your Profile</Modal.Heading>
+
                             </Modal.Header>
                             <Modal.Body className="p-6">
                                 <Surface variant="default">
-                                    <form className="flex flex-col gap-4">
-                                        <TextField className="w-full" name="name" type="text" variant="secondary">
+                                    <form onSubmit={onSubmit} className="flex flex-col gap-4">
+                                        <TextField defaultValue={user?.name} className="w-full" name="name" type="text" variant="secondary">
                                             <Label>Name</Label>
                                             <Input placeholder="Enter your name" />
                                         </TextField>
-                                        <TextField className="w-full" name="email" type="email" variant="secondary">
+                                        <TextField defaultValue={user?.email} className="w-full" name="email" type="email" variant="secondary">
                                             <Label>Email</Label>
                                             <Input placeholder="Enter your email" />
                                         </TextField>
-                                        
+                                        <TextField name="imageUrl">
+                                            <Label>Image URL</Label>
+                                            <Input
+                                                type="url"
+                                                placeholder="https://example.com/bali-paradise.jpg"
+                                                className="rounded-2xl"
+                                            />
+                                            <FieldError />
+                                        </TextField>
+                                        <Modal.Footer>
+                                            <Button slot="close" variant="secondary">
+                                                Cancel
+                                            </Button>
+                                            <Button type='submit' slot="close">Update</Button>
+                                        </Modal.Footer>
                                     </form>
                                 </Surface>
                             </Modal.Body>
-                            <Modal.Footer>
-                                <Button slot="close" variant="secondary">
-                                    Cancel
-                                </Button>
-                                <Button slot="close">Send Message</Button>
-                            </Modal.Footer>
+                            
                         </Modal.Dialog>
                     </Modal.Container>
                 </Modal.Backdrop>

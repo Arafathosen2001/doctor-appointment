@@ -11,7 +11,7 @@ export function UpdateAppointmentModal({ doct }) {
             ? parseDate(doct.BokingDate.split("T")[0])
             : null
     );
-    console.log(doct)
+    // console.log(doct)
     const {
         data: session,
         isPending
