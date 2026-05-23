@@ -51,7 +51,7 @@ const SignUpPage=()=> {
     return (
         <div className="">
             <div className="flex items-center justify-center p-10">
-                <Surface className="w-xl min-w-[380px] border border-surface-variant rounded-3xl p-6">
+                <Surface className="w-xl min-w-[320px] border border-surface-variant rounded-3xl p-6">
                     <Form onSubmit={onSubmit}>
                         <Fieldset className="w-full">
                             <Fieldset.Legend className="text-center">Profile Settings</Fieldset.Legend>

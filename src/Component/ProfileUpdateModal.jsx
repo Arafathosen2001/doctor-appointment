@@ -30,7 +30,7 @@ const ProfileUpdateModal = () => {
     return (
         <div className="">
             <Modal>
-                <Button variant="secondary">Update</Button>
+                <Button variant="soft" className={'clt border'}>Update Profile</Button>
                 <Modal.Backdrop>
                     <Modal.Container placement="auto">
                         <Modal.Dialog className="sm:max-w-md">
@@ -44,15 +44,15 @@ const ProfileUpdateModal = () => {
                             <Modal.Body className="p-6">
                                 <Surface variant="default">
                                     <form onSubmit={onSubmit} className="flex flex-col gap-4">
-                                        <TextField defaultValue={user?.name} className="w-full" name="name" type="text" variant="secondary">
+                                        <TextField isRequired defaultValue={user?.name} className="w-full" name="name" type="text" variant="secondary">
                                             <Label>Name</Label>
                                             <Input placeholder="Enter your name" />
                                         </TextField>
-                                        <TextField defaultValue={user?.email} className="w-full" name="email" type="email" variant="secondary">
+                                        <TextField isDisabled defaultValue={user?.email} className="w-full" name="email" type="email" variant="secondary">
                                             <Label>Email</Label>
                                             <Input placeholder="Enter your email" />
                                         </TextField>
-                                        <TextField name="imageUrl">
+                                        <TextField isRequired name="imageUrl">
                                             <Label>Image URL</Label>
                                             <Input
                                                 type="url"

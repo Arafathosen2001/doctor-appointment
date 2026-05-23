@@ -17,6 +17,7 @@ import { CiFloppyDisk } from "react-icons/ci";
 import { authClient } from "../lib/auth-client";
 import { redirect } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
+import Link from "next/link";
 const SignInPage=()=> {
     const onSubmit = async(e) => {
         e.preventDefault();
@@ -46,10 +47,10 @@ const SignInPage=()=> {
 
     return (
         <div className="container flex items-center justify-center  p-10">
-            <Surface className="w-xl min-w-[380px] border border-surface-variant rounded-3xl p-6">
+            <Surface className="w-xl min-w-[320px] border border-surface-variant rounded-3xl p-6">
                 <Form onSubmit={onSubmit}>
                     <Fieldset className="w-full">
-                        <Fieldset.Legend className="text-center">Plesse Login</Fieldset.Legend>
+                        <Fieldset.Legend className="text-center text-3xl font-bold">Please Login</Fieldset.Legend>
                         <Fieldset.Group>
                         
                             <TextField isRequired name="email" type="email">
@@ -94,6 +95,10 @@ const SignInPage=()=> {
                     <div className="divider">OR</div>
                     <Button onClick={handelGoogleSignIn} className='w-full'><FcGoogle />Sign In With Google</Button>
                 </div>
+                <div className="flex justify-center items-center mt-5"><span>Dont have an account? </span>
+                    <span><Link href={"/signup"} className="text-primary">Sign Up</Link></span>
+                </div>
+                
             </Surface>
         </div>
     );

@@ -21,7 +21,7 @@ export function DeleteButton({ data }) {
     };
     return (
         <AlertDialog>
-            <Button variant="danger" className="absolute top-3 right-3">Delete</Button>
+            <Button variant="danger" className="">Delete</Button>
             <AlertDialog.Backdrop>
                 <AlertDialog.Container>
                     <AlertDialog.Dialog className="sm:max-w-[400px]">

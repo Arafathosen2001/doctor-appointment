@@ -1,39 +1,52 @@
-import { Button, Card, CloseButton } from "@heroui/react";
+import { Card } from "@heroui/react";
 import Image from "next/image";
 import { UpdateAppointmentModal } from "./UpdateAppointmentModal";
 import { serverSession } from "@/app/lib/data";
 import { DeleteButton } from "./DeleteButton";
 
-export const BokingDoctorCard = async({ doct })=> {
+export const BokingDoctorCard = async ({ doct }) => {
     const sess = await serverSession();
-    // console.log(sess)
-    // console.log(doct)
+
     return (
-        <Card className="w-8/12 mx-auto items-stretch md:flex-row">
-            <div className="relative h-[140px] w-full shrink-0 overflow-hidden rounded-2xl sm:h-[120px] sm:w-[120px]">
-                <Image
-                    alt="Cherries"
-                    className="pointer-events-none absolute inset-0 h-full w-full scale-125 object-cover select-none"
-                    loading="lazy"
-                    src={doct.doctorImage}
-                    width={300}
-                    height={300}
-                />
-            </div>
-            <div className="flex flex-1 flex-col gap-3">
-                <Card.Header className="gap-1">
-                    <Card.Title className="pr-8">{doct.doctorName}</Card.Title>
-                    <Button variant="danger-soft" className={'absolute top-3 right-3'}>Delete</Button>
-                    <DeleteButton data={doct}></DeleteButton>
-                </Card.Header>
-                <Card.Footer className="mt-auto flex w-full flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
-                    <div className="flex flex-col">
-                        <span className="text-sm font-medium clt">Patient Name: {doct.patientName}</span>
-                        <span className="text-xs text-muted">BokingDate: {doct.BokingDate }</span>
+        <Card className="w-full max-w-3xl mx-auto p-4 md:p-5 rounded-3xl shadow-lg border">
+
+            <div className="flex flex-col sm:flex-row gap-8 md:gap-16 ">
+
+                <div className="relative w-full sm:w-[180px] h-[220px] sm:h-[180px] overflow-hidden rounded-2xl shrink-0">
+                    <Image
+                        alt="Doctor"
+                        src={doct.doctorImage}
+                        fill
+                        className="object-cover"
+                        priority
+                    />
+                </div>
+
+                <div className="flex flex-1 flex-col justify-between gap-5">
+
+                    <div className="space-y-3">
+                        <h1 className="text-2xl md:text-3xl font-bold">
+                            {doct.doctorName}
+                        </h1>
+
+                        <div className="space-y-1">
+                            <p className="text-sm md:text-base font-medium clt break-words">
+                                Patient Name: {doct.patientName}
+                            </p>
+
+                            <p className="text-sm md:text-base text-gray-500">
+                                Booking Date: {doct.BokingDate}
+                            </p>
+                        </div>
                     </div>
-                    <UpdateAppointmentModal doct={doct}></UpdateAppointmentModal>
-                </Card.Footer>
+
+                    <div className="flex  gap-3">
+                        <UpdateAppointmentModal doct={doct} />
+                        <DeleteButton data={doct} />
+                    </div>
+
+                </div>
             </div>
         </Card>
     );
-}
+};

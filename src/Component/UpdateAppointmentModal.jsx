@@ -22,7 +22,7 @@ export function UpdateAppointmentModal({ doct }) {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const Udata = Object.fromEntries(formData.entries());
-        console.log(Udata)
+        // console.log(Udata)
         const updateData = {
             patientName: Udata.name,
             patientGender: Udata.gender,
@@ -30,6 +30,9 @@ export function UpdateAppointmentModal({ doct }) {
             patientPhoneNumber: Udata.phone,
             BokingDate: Udata.date,
         };
+        if (Udata.date === "") {
+            return alert('please select date')
+        }
         const res = await fetch(
             `http://localhost:8000/appointments/${doct._id}`,
             {

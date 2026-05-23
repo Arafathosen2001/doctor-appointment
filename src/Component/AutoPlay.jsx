@@ -23,7 +23,7 @@ const AutoPlay = () => {
         arrows: true
     };
     return (
-        <div className="slider-container">
+        <div className="slider-container max-w-[80%] md:container mx-auto">
             <Slider {...settings}>
                 <div>
                     <Image src={add1} width={1540} height={300} alt="add1"></Image>
