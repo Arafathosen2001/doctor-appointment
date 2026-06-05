@@ -10,6 +10,6 @@ export const serverSession = async () => {
 
 
 export const fetchBookingDataByuserId = async (userId) => {
-    const res = await fetch(`http://localhost:8000/appointments/${userId}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appointments/${userId}`);
     return res.json();;
 };

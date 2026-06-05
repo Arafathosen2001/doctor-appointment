@@ -3,12 +3,13 @@
 import { AlertDialog, Button } from "@heroui/react";
 import { redirect } from "next/navigation";
 import React from "react";
+import toast from "react-hot-toast";
 
 export function DeleteButton({ data }) {
     const { _id } = data;
     const handelDeleteButton = async () => {
         // console.log('okkkkk')
-        const res = await fetch(`http://localhost:8000/appointments/${_id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appointments/${_id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -16,7 +17,7 @@ export function DeleteButton({ data }) {
             body: JSON.stringify(data)
         });
         const result = await res.json();
-        alert('Delete susccecfull');
+        toast.success('Delete successful');
         redirect('/dashboard');
     };
     return (
@@ -28,7 +29,7 @@ export function DeleteButton({ data }) {
                         <AlertDialog.CloseTrigger />
                         <AlertDialog.Header>
                             <AlertDialog.Icon status="danger" />
-                            <AlertDialog.Heading>Delete Destination permanently?</AlertDialog.Heading>
+                            <AlertDialog.Heading>Delete Booking permanently?</AlertDialog.Heading>
                         </AlertDialog.Header>
                         <AlertDialog.Body>
                             <p>

@@ -20,7 +20,7 @@ const AutoPlay = () => {
         autoplay: true,
         autoplaySpeed: 3000,
         speed: 800,
-        arrows: true
+        arrows: false
     };
     return (
         <div className="slider-container max-w-[80%] md:container mx-auto">

@@ -1,12 +1,13 @@
 "use client"
 
-import { Avatar, Button } from '@heroui/react';
+import { Avatar, Button, Spinner } from '@heroui/react';
 import Link from 'next/link';
 import React from 'react';
 import NavLink from './NavLink';
 import { useRouter } from 'next/navigation';
 import { FaHeartbeat } from 'react-icons/fa';
 import { authClient } from '@/app/lib/auth-client';
+import toast from 'react-hot-toast';
 
 const NavBar2 = () => {
 
@@ -22,7 +23,7 @@ const NavBar2 = () => {
 
     const handelSignOut = async () => {
         await authClient.signOut();
-        alert("Sign out successfully");
+        toast.success("Sign out successfully");
         router.push("/signin");
     }
 
@@ -74,7 +75,10 @@ const NavBar2 = () => {
                     <ul className='flex justify-between items-center gap-3'>
 
                         {isPending ? (
-                            <h1>Loading...</h1>
+                            <div className="flex flex-col items-center gap-2">
+                                <Spinner size="xl" />
+                                <span className="text-xs text-muted">Loding...</span>
+                            </div>
                         ) : userA ? (
                             <>
                                 <Avatar>

@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Health Link - Doctor Appointment Manager
 
-## Getting Started
+## Live Website
 
-First, run the development server:
+https://vercel.app
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Project Overview
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Health Link is a modern Doctor Appointment Booking Platform where users can browse doctors, view detailed information, and book appointments. Users can also manage bookings and update profile information through a private dashboard.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* Secure Authentication using Better Auth
+* Google Social Login
+* Browse and Search Doctors
+* Doctor Details & Appointment Booking
+* Private Dashboard for Managing Bookings
+* Update and Delete Appointment Feature
+* Profile Management System
+* JWT/Session Based Authentication
+* Responsive Design for Mobile, Tablet and Desktop
 
-## Learn More
+## Technologies Used
 
-To learn more about Next.js, take a look at the following resources:
+### Frontend
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* Next.js 16
+* React 19
+* Tailwind CSS
+* HeroUI
+* React Hot Toast
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Backend
 
-## Deploy on Vercel
+* Node.js
+* Express.js
+* MongoDB
+* Better Auth
+* JWT Authentication
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Author
+
+Md. Arafat Hosen

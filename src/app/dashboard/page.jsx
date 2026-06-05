@@ -3,10 +3,15 @@ import Profile from "@/Component/Profile";
 import { Tabs } from "@heroui/react";
 import React from 'react';
 
-const Dashboard = async () => {
+export const metadata = {
+    title: "Dashboard",
+    description: "Learn more about our company",
+};
+const Dashboard = () => {
+    
     return (
         <div className='container py-20'>
-            <h1>Dashbord</h1>
+            <h1 className="text-3xl font-bold mb-5">Dashboard</h1>
             <Tabs className="w-full">
                 <Tabs.ListContainer>
                     <Tabs.List aria-label="Options">

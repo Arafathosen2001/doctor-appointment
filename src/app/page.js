@@ -5,6 +5,9 @@ import { Button } from "@heroui/react";
 import Link from "next/link";
 import AutoPlay from "@/Component/AutoPlay";
 import FetcherDoctor from "@/Component/FetcherDoctor";
+import WhyChooseUs from "@/Component/othersSections/WhyChooseUs";
+import MedicalSpecialties from "@/Component/othersSections/MedicalSpecialties";
+import PatientTestimonials from "@/Component/othersSections/PatientTestimonials";
 
 
 export default function Home() {
@@ -12,6 +15,9 @@ export default function Home() {
     <div className="container">
       <AutoPlay></AutoPlay>
       <FetcherDoctor></FetcherDoctor>
+      <WhyChooseUs />
+      <MedicalSpecialties />
+      <PatientTestimonials />
     </div>
   );
 }

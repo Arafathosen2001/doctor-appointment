@@ -5,11 +5,12 @@ import { Button, FieldError, Form, Input, Label, Modal, Spinner, Surface, TextFi
 import { FaUserCog } from 'react-icons/fa';
 import { authClient } from '@/app/lib/auth-client';
 import { redirect } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 const ProfileUpdateModal = () => {
     const { data: session, status, isPending } = authClient.useSession();
         const user = session?.user;
-        console.log(user);
+        // console.log(user);
     const onSubmit = async (e) => {
         e.preventDefault(); 
         const formData = new FormData(e.currentTarget);
@@ -21,14 +22,16 @@ const ProfileUpdateModal = () => {
             image: data.imageUrl,
             redirect: "/dashboard",
         })
-        if (error) {
-            alert(`${error.message}`);
+        if (res) {
+            toast.success("Profile updated successfully");
+            redirect("/dashboard");
         }
-        alert(`Update Successful`);
+        if (error) {
+            toast.error(`${error.message}`);
+        }
     };
 
     return (
-        <div className="">
             <Modal>
                 <Button variant="soft" className={'clt border'}>Update Profile</Button>
                 <Modal.Backdrop>
@@ -57,7 +60,7 @@ const ProfileUpdateModal = () => {
                                             <Input
                                                 type="url"
                                                 placeholder="https://example.com/bali-paradise.jpg"
-                                                className="rounded-2xl"
+                                               
                                             />
                                             <FieldError />
                                         </TextField>
@@ -65,7 +68,7 @@ const ProfileUpdateModal = () => {
                                             <Button slot="close" variant="secondary">
                                                 Cancel
                                             </Button>
-                                            <Button type='submit' slot="close">Update</Button>
+                                            <Button type='submit' >Update</Button>
                                         </Modal.Footer>
                                     </form>
                                 </Surface>
@@ -75,7 +78,7 @@ const ProfileUpdateModal = () => {
                     </Modal.Container>
                 </Modal.Backdrop>
             </Modal>
-        </div>
+       
     );
 };
 

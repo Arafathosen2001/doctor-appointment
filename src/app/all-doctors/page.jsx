@@ -1,18 +1,22 @@
-import DoctorCard from '@/Component/DoctorCard';
-import React from 'react';
+import DoctorSearch from "@/Component/DoctorSearch";
+
+export const metadata = {
+    title: "All Doctors",
+    description: "Browse our list of qualified doctors",
+};
 
 const AllDoctorsPage = async () => {
-    const res = await fetch('http://localhost:8000/doctors');
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/doctors`
+    );
+
     const doctors = await res.json();
-    // console.log(doctors)
+
     return (
-        <div className='container'>
-            <h1>All Doctors</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                {
-                    doctors.map(doctor => <DoctorCard key={doctor._id} doctor={doctor}></DoctorCard>)
-                }
-            </div>
+        <div className="container">
+            
+
+            <DoctorSearch doctors={doctors} />
         </div>
     );
 };

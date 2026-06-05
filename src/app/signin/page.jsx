@@ -18,6 +18,7 @@ import { authClient } from "../lib/auth-client";
 import { redirect } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
+import toast from "react-hot-toast";
 const SignInPage=()=> {
     const onSubmit = async(e) => {
         e.preventDefault();
@@ -30,11 +31,11 @@ const SignInPage=()=> {
             rememberMe: true,
         });
         if (data) { 
-            alert("Login Successfull");
+            toast.success("Login Successfull");
             redirect("/");
         };
         if (error) {
-            alert(error.message);
+            toast.error(error.message);
         }
     };
 
@@ -43,6 +44,10 @@ const SignInPage=()=> {
             provider: "google",
             callbackURL: "/",
         });
+        if (data) {
+            toast.success("Google sign in successful");
+            redirect("/");
+        }
     }
 
     return (
@@ -84,7 +89,7 @@ const SignInPage=()=> {
                             
                         </Fieldset.Group>
                         <Fieldset.Actions>
-                            <Button type="submit" variant="primary" className='w-full'>
+                            <Button type="submit" className='w-full btn clt border'>
                                 <CiFloppyDisk />
                                 Log In
                             </Button>
@@ -93,7 +98,7 @@ const SignInPage=()=> {
                 </Form>
                 <div className="">
                     <div className="divider">OR</div>
-                    <Button onClick={handelGoogleSignIn} className='w-full'><FcGoogle />Sign In With Google</Button>
+                    <Button onClick={handelGoogleSignIn} className='w-full btn clt border'><FcGoogle />Sign In With Google</Button>
                 </div>
                 <div className="flex justify-center items-center mt-5"><span>Dont have an account? </span>
                     <span><Link href={"/signup"} className="text-primary">Sign Up</Link></span>

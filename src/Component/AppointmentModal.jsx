@@ -5,6 +5,7 @@ import { Button, Card, Select, Input, Label, ListBox, Modal, Surface, TextField,
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
+import toast from "react-hot-toast";
 import { BiEnvelope } from "react-icons/bi";
 
 export function AppointmentModal({ doctor }) {
@@ -32,10 +33,10 @@ export function AppointmentModal({ doctor }) {
             BokingDate: Udata.date,
         }
         if (Udata.date === "") {
-            return alert('plese select date')
+            return toast.error('plese select date')
         }
 
-        const res = await fetch('http://localhost:8000/appointments', {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appointments`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -44,7 +45,7 @@ export function AppointmentModal({ doctor }) {
         })
         const data = await res.json();
         if (data) {
-            alert('Booking succesfull')
+            toast.success('Booking succesfull');
             redirect('/all-doctors')
         }
     }

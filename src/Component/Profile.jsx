@@ -3,6 +3,8 @@ import React from 'react';
 import Image from 'next/image';
 import ProfileUpdateModal from './ProfileUpdateModal';
 
+
+
 const Profile = async () => {
     const session = await serverSession();
     const user = session?.user;
@@ -10,7 +12,7 @@ const Profile = async () => {
     return (
         <div className="container mx-auto px-3 md:px-5 py-10">
 
-            <div className="w-full max-w-4xl mx-auto shadow-2xl rounded-3xl p-5 md:p-10 border bg-white">
+            <div className="w-full max-w-4xl mx-auto shadow-2xl rounded-3xl p-5 md:p-10 border">
 
                 <div className="text-center mb-10">
                     <h1 className="text-3xl md:text-4xl font-bold">

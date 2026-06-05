@@ -17,6 +17,7 @@ import { CiFloppyDisk } from "react-icons/ci";
 import { authClient } from "../lib/auth-client";
 import { redirect } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
+import toast from "react-hot-toast";
 const SignUpPage=()=> {
     const onSubmit = async(e) => {
         e.preventDefault();
@@ -34,11 +35,11 @@ const SignUpPage=()=> {
         console.log(data,error)
         if (data) { 
             await authClient.signOut();
-            alert("User signed up:", data.message);
+            toast.success("User signed up:", data.message);
             redirect("/signin");
         };
         if (error) {
-            alert(error.message);
+            toast.error(error.message);
         }
     };
     const handelGoogleSignIn = async() => {
@@ -111,7 +112,7 @@ const SignUpPage=()=> {
                                 </TextField>
                             </Fieldset.Group>
                             <Fieldset.Actions>
-                                <Button type="submit" variant="primary" className='w-full'>
+                                <Button type="submit" variant="primary" className='w-full btn clt border'>
                                     <CiFloppyDisk />
                                     Create Account
                                 </Button>
@@ -120,7 +121,7 @@ const SignUpPage=()=> {
                     </Form>
                     <div className="">
                         <div className="divider">OR</div>
-                        <Button onClick={handelGoogleSignIn} className='w-full'><FcGoogle />Sign In With Google</Button>
+                        <Button onClick={handelGoogleSignIn} className='w-full btn clt border'><FcGoogle />Sign In With Google</Button>
                     </div>
                 </Surface>
             </div>

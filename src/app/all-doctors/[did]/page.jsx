@@ -1,6 +1,8 @@
 
+import { auth } from '@/app/lib/auth';
 import { AppointmentModal } from '@/Component/AppointmentModal';
 import { Button, Card } from '@heroui/react';
+import { headers } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -9,7 +11,15 @@ import { FcRating } from 'react-icons/fc';
 
 const DoctorDeatilesPage = async({ params }) => {
     const { did } = await params;
-    const res = await fetch(`http://localhost:8000/doctors/${did}`)
+    const {token} = await auth.api.getToken({
+        headers: await headers()
+    });
+    // console.log(token);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/doctors/${did}`, {
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+    })
     const doctor = await res.json();
     // console.log(doctor)
     return (

@@ -9,14 +9,14 @@ const BookingData = async() => {
         })
         const userId = session?.user.id;
         // console.log(session.user.id)
-        const res = await fetch(`http://localhost:8000/appointments/${userId}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appointments/${userId}`);
         const data = await res.json();
-        // console.log(data)
+        // console.log(data) 
         return (
     
                 <div className="space-y-3">
                     {
-                        data.length === 0 ? (<><h1>No Data</h1></>) :
+                    data.length === 0 ? (<><h1 className="text-2xl font-bold text-center bg-gray-900 py-16 rounded-2xl border ">No Booking Data</h1></>) :
                             (
                                 data.map(doct => <BokingDoctorCard key={doct._id} doct={doct}></BokingDoctorCard>)
                             )

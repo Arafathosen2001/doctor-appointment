@@ -5,6 +5,7 @@ import { Button, Card, Select, Input, Label, ListBox, Modal, Surface, TextField,
 import React, { useState } from "react";
 import { parseDate } from "@internationalized/date";
 import { redirect } from "next/navigation";
+import toast from "react-hot-toast";
 export function UpdateAppointmentModal({ doct }) {
     const [date, setDate] = useState(
         doct?.BokingDate
@@ -12,12 +13,7 @@ export function UpdateAppointmentModal({ doct }) {
             : null
     );
     // console.log(doct)
-    const {
-        data: session,
-        isPending
-    } = authClient.useSession();
-    const user = session?.user;
-    // console.log(user)
+
     const onsubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
@@ -31,10 +27,10 @@ export function UpdateAppointmentModal({ doct }) {
             BokingDate: Udata.date,
         };
         if (Udata.date === "") {
-            return alert('please select date')
+            return toast.error('please select date')
         }
         const res = await fetch(
-            `http://localhost:8000/appointments/${doct._id}`,
+            `${process.env.NEXT_PUBLIC_SERVER_URL}/appointments/${doct._id}`,
             {
             method: 'PATCH',
             headers: {
@@ -44,7 +40,7 @@ export function UpdateAppointmentModal({ doct }) {
         })
         const data = await res.json();
         if (data) {
-            alert('Update succesfull')
+            toast.success('Update succesfull')
             redirect('/dashboard')
         }
     }
@@ -119,7 +115,7 @@ export function UpdateAppointmentModal({ doct }) {
                                         </DatePicker.Popover>
                                     </DatePicker>
                                     <Modal.Footer>
-                                        <Button type="submit" className={'w-full'}>Update</Button>
+                                        <Button slot="close" type="submit" className={'w-full'}>Update</Button>
                                     </Modal.Footer>
                                 </Form>
                             </Surface>
