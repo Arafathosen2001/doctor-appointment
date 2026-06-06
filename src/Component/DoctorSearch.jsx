@@ -21,7 +21,7 @@ const DoctorSearch = ({ doctors }) => {
                 <h1 className="text-3xl font-bold mb-5">
                     <span className="clt">A</span>ll D<span className="clt">o</span>ct<span className="clt">o</span>r<span className="clt">s</span>
                 </h1>
-                <div className="border flex justify-center items-center flex-1">
+                <div className="border rounded-lg flex justify-center items-center flex-1">
                     <input
                         type="text"
                         placeholder="Search doctor name/specialty..."

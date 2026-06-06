@@ -23,7 +23,6 @@ const PatientTestimonials = () => {
                 breakpoint: 768,
                 settings: {
                     slidesToShow: 1,
-                    arrows: false,
                 },
             },
         ]
@@ -75,7 +74,7 @@ const PatientTestimonials = () => {
 
             <div className="">
                 
-                <div className="slider-container container mx-auto">
+                <div className="slider-container mx-auto">
                         <Slider {...settings}>
                             {reviews.map((review, index) => (
                             <div

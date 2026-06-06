@@ -26,7 +26,13 @@ const AutoPlay = () => {
         <div className="slider-container max-w-[80%] md:container mx-auto">
             <Slider {...settings}>
                 <div>
-                    <Image src={add1} width={1540} height={300} alt="add1"></Image>
+                    <div className="absolute inset-0 bg-gray-900/30 p-0" />
+                    <Image src={add1} width={1540} height={300} alt="add1" 
+                        priority
+                        sizes="100vw"
+                        className="object-contain md:object-cover">
+                    </Image>
+                    
                 </div>
                 <div>
                     <Image src={add2} width={1540} height={300} alt="add1"></Image>
@@ -35,7 +41,7 @@ const AutoPlay = () => {
                     <Image src={add2} width={1540} height={300} alt="add1"></Image>
                 </div>
                 <div>
-                    <Image src={add3} width={1540} height={300} alt="add1"></Image>
+                    <Image src={add3} width={1540} height={300} alt="add1" ></Image>
                 </div>
                 <div>
                     <Image src={add4} width={1540} height={300} alt="add1"></Image>

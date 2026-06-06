@@ -2,6 +2,7 @@ import { serverSession } from '@/app/lib/data';
 import React from 'react';
 import Image from 'next/image';
 import ProfileUpdateModal from './ProfileUpdateModal';
+import Link from 'next/link';
 
 
 
@@ -63,7 +64,10 @@ const Profile = async () => {
                         </div>
 
                         <div className="pt-2 flex justify-center md:justify-start">
-                            <ProfileUpdateModal />
+                            <Link href="/dashboard/updateprofile" className="btn border clt">
+                                Update Profile
+                            </Link>
+
                         </div>
 
                     </div>

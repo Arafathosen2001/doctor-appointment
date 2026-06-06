@@ -58,7 +58,6 @@ export function AppointmentModal({ doctor }) {
                     <Modal.Dialog className="sm:max-w-md">
                         <Modal.CloseTrigger />
                         <Modal.Header>
-                            <Modal.Heading>Contact Us</Modal.Heading>
                             <h1 className='text-2xl font-semibold'>{doctor.name}</h1>
                         </Modal.Header>
                         <Modal.Body className="p-6">
@@ -71,10 +70,10 @@ export function AppointmentModal({ doctor }) {
                                     <TextField className="w-full" name="name" type="text">
                                         <Label>Gender</Label>
                                         <select name="gender" className="w-full p-2 shadow rounded-2xl">
-                                            <option value="">Select one</option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                            <option value="Others">Others</option>
+                                            <option className="text-white" value="">Select your gender</option>
+                                            <option className="text-black" value="Male">Male</option>
+                                            <option className="text-black" value="Female">Female</option>
+                                            <option className="text-black" value="Others">Others</option>
                                         </select>
                                     </TextField>
                                     
@@ -122,7 +121,7 @@ export function AppointmentModal({ doctor }) {
                                         </DatePicker.Popover>
                                     </DatePicker>
                                     <Modal.Footer>
-                                        <Button type="submit" className={'w-full'}>Submit</Button>
+                                        <Button type="submit" className={'w-full btn border clt'}>Submit</Button>
                                     </Modal.Footer>
                                 </Form>
                             </Surface>

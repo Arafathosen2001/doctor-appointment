@@ -115,7 +115,7 @@ export function UpdateAppointmentModal({ doct }) {
                                         </DatePicker.Popover>
                                     </DatePicker>
                                     <Modal.Footer>
-                                        <Button slot="close" type="submit" className={'w-full'}>Update</Button>
+                                        <Button slot="close" type="submit" className={'w-full btn border clt'}>Update</Button>
                                     </Modal.Footer>
                                 </Form>
                             </Surface>

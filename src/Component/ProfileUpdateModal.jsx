@@ -1,8 +1,7 @@
 "use client";
 import { MdOutlineModeEditOutline } from 'react-icons/md';
 import { Button, FieldError, Form, Input, Label, Modal, Spinner, Surface, TextField } from "@heroui/react";
-
-import { FaUserCog } from 'react-icons/fa';
+import { ImProfile } from "react-icons/im";
 import { authClient } from '@/app/lib/auth-client';
 import { redirect } from 'next/navigation';
 import toast from 'react-hot-toast';
@@ -39,7 +38,8 @@ const ProfileUpdateModal = () => {
                         <Modal.Dialog className="sm:max-w-md">
                             <Modal.CloseTrigger />
                             <Modal.Header>
-                                <Modal.Icon className="bg-accent-soft text-accent-soft-foreground">
+                            <Modal.Icon className="bg-accent-soft text-accent-soft-foreground">
+                                <ImProfile />
                                 </Modal.Icon>
                                 <Modal.Heading>Update Your Profile</Modal.Heading>
 

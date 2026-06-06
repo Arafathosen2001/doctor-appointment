@@ -16,7 +16,7 @@ const BookingData = async() => {
     
                 <div className="space-y-3">
                     {
-                    data.length === 0 ? (<><h1 className="text-2xl font-bold text-center bg-gray-900 py-16 rounded-2xl border ">No Booking Data</h1></>) :
+                    data.length === 0 ? (<><h1 className="text-2xl font-bold text-center bg-gray-900 py-16 rounded-2xl border text-white ">No Booking Data</h1></>) :
                             (
                                 data.map(doct => <BokingDoctorCard key={doct._id} doct={doct}></BokingDoctorCard>)
                             )
