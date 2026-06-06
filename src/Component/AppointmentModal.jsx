@@ -46,7 +46,7 @@ export function AppointmentModal({ doctor }) {
         const data = await res.json();
         if (data) {
             toast.success('Booking succesfull');
-            redirect('/all-doctors')
+            redirect('/dashboard')
         }
     }
     // console.log(doctor)

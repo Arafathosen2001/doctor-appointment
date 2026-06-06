@@ -26,7 +26,9 @@ const NavBar2 = () => {
         toast.success("Sign out successfully");
         router.push("/signin");
     }
-
+    const closeDropdown = () => {
+        document.activeElement?.blur();
+    };
     return (
         <div className="bg-base-200 shadow-sm">
             <div className="navbar container">
@@ -37,9 +39,9 @@ const NavBar2 = () => {
                         </div>
                         <ul tabIndex="-1"
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                            <li><NavLink href={'/'}>Home</NavLink></li>
-                            <li><NavLink href={'/all-doctors'}>All Appointment</NavLink></li>
-                            <li><NavLink href={'/dashboard'}>Dashboard</NavLink></li>
+                            <li onClick={closeDropdown}><NavLink href={'/'}>Home</NavLink></li>
+                            <li onClick={closeDropdown}><NavLink href={'/all-doctors'}>All Appointment</NavLink></li>
+                            <li onClick={closeDropdown}><NavLink href={'/dashboard'}>Dashboard</NavLink></li>
                             {
                                 userA && <Button
                                     onClick={handelSignOut}
